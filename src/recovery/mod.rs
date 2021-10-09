@@ -2,6 +2,8 @@ use std::{fs::File, os::unix::prelude::FromRawFd, sync::Mutex};
 
 use lazy_static::lazy_static;
 
+pub mod mount;
+
 mod panic;
 mod ui_print;
 pub use panic::panic_handler;
