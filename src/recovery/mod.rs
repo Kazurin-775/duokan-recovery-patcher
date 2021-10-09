@@ -7,12 +7,15 @@ pub mod process;
 
 mod panic;
 mod ui_print;
-pub use panic::panic_handler;
 use ui_print::UiPrintFd;
 
 lazy_static! {
     pub static ref CMD_PIPE: Mutex<Option<UiPrintFd>> = Mutex::new(None);
     pub static ref PKG_FILE: Mutex<Option<String>> = Mutex::new(None);
+}
+
+pub fn install_panic_handler() {
+    std::panic::set_hook(Box::new(panic::panic_handler));
 }
 
 pub fn parse_args() {

@@ -3,7 +3,7 @@ use std::process::Command;
 mod recovery;
 
 fn main() {
-    std::panic::set_hook(Box::new(recovery::panic_handler));
+    recovery::install_panic_handler();
     recovery::parse_args();
 
     ui_println!("Hello, world!");
