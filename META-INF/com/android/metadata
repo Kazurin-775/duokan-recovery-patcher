@@ -1,0 +1,8 @@
+ota-required-cache=56569856
+ota-type=BLOCK
+post-build=Allwinner/virgo_perf1/virgo-perf1:8.1.0/OPM1.171019.026/20210518-200109:user/test-keys
+post-build-incremental=20210518-200109
+post-timestamp=1621339247
+pre-build=Allwinner/virgo_perf1/virgo-perf1:8.1.0/OPM1.171019.026/20210315-192643:user/test-keys
+pre-build-incremental=20210315-192643
+pre-device=virgo-perf1
