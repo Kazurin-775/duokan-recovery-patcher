@@ -1,3 +1,5 @@
+use std::process::Command;
+
 mod recovery;
 
 fn main() {
@@ -16,6 +18,11 @@ fn main() {
     if !std::fs::metadata("/system/bin/toybox").unwrap().is_file() {
         panic!("Error: /system/bin/toybox does not exist");
     }
+
+    let status = recovery::process::exec_logged(Command::new("/system/bin/toybox").arg("mount"))
+        .unwrap()
+        .success();
+    ui_println!("Success: {}", status);
 
     recovery::finalize();
 }
