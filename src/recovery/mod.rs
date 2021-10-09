@@ -3,6 +3,7 @@ use std::{fs::File, os::unix::prelude::FromRawFd, sync::Mutex};
 use lazy_static::lazy_static;
 
 pub mod mount;
+pub mod package;
 pub mod process;
 
 mod panic;

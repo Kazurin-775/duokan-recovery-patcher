@@ -6,3 +6,8 @@ edition = "2021"
 [dependencies]
 lazy_static = "1.4.0"
 nix = "0.22.1"
+
+[dependencies.zip]
+version = "0.5.13"
+default-features = false
+features = ["deflate"]
