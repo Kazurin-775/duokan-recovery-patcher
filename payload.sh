@@ -9,8 +9,9 @@ chmod 755 'magiskboot'
 echo 'Dumping recovery image...'
 dd 'if=/dev/block/by-name/recovery' 'of=boot.img' || exit 1
 
-echo 'Applying cmdline patch...'
-./magiskboot hexpatch 'boot.img' '73656C696E75783D31' '73656C696E75783D30' || echo '... failed'
+# the following patch causes the recovery image to fail to boot
+### echo 'Applying cmdline patch...'
+### ./magiskboot hexpatch 'boot.img' '73656C696E75783D31' '73656C696E75783D30' || echo '... failed'
 
 echo 'Unpacking recovery image...'
 ./magiskboot unpack 'boot.img' || exit 1
@@ -25,5 +26,13 @@ echo 'Applying black magic...'
 
 echo 'Repacking boot image...'
 ./magiskboot repack 'boot.img' || exit 1
+
+echo 'Action!'
+# flash the pwned recovery image
+dd 'if=new-boot.img' 'of=/dev/block/by-name/recovery' || exit 1
+# reboot to recovery after 5 seconds
+sync
+sleep 5
+reboot recovery
 
 echo 'Done!'
