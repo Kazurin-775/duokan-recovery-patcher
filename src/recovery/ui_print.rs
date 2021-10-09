@@ -13,6 +13,10 @@ impl UiPrintFd {
         write!(inner, "ui_print ").unwrap();
         UiPrintFd { inner }
     }
+
+    pub fn flush(&mut self) {
+        self.inner.flush().unwrap();
+    }
 }
 
 impl std::fmt::Write for UiPrintFd {
@@ -36,6 +40,7 @@ macro_rules! ui_print {
 
         if let Some(cmd_pipe) = $crate::recovery::CMD_PIPE.lock().unwrap().as_mut() {
             write!(cmd_pipe, $($args)+).unwrap();
+            cmd_pipe.flush();
         } else {
             print!($($args)+);
         }
